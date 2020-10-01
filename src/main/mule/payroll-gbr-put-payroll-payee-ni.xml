@@ -10,9 +10,9 @@ http://www.mulesoft.org/schema/mule/workday http://www.mulesoft.org/schema/mule/
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<configuration-properties file="mule-app.properties"/>
-	<workday:config-version-34-config name="Workday_Config_version_34" doc:name="Workday Config version 34" doc:id="63220581-77c3-4c98-b71c-dc12f92e3688" >
-		<workday:basic-authentication-api-v34-connection userName="${workday.username}" password="${workday.password}" tenantName="${workday.tenantname}" hostName="${workday.hostname}" />
-	</workday:config-version-34-config>
+	<workday:config name="Workday_Config_version_35" doc:name="Workday Config version 35" doc:id="63220581-77c3-4c98-b71c-dc12f92e3688" >
+		<workday:basic-authentication-api-connection userName="${workday.username}" password="${workday.password}" tenantName="${workday.tenantname}" hostName="${workday.hostname}" />
+	</workday:config>
 	<flow name="payroll-gbr-get-form" doc:id="713bc3e9-1752-433f-b2d8-afb4d59c3e66" >
 		<http:listener config-ref="HTTP_Listener_config" path="/" doc:name="/" doc:id="a4769708-a7b3-40b4-961c-6104ac02d612" />
 		<parse-template location="form.html" doc:name="Parse Template" doc:id="be0f09df-04d1-4fc4-a068-123800676de8" />
@@ -27,7 +27,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Create_Position_Request @(ns0#version: "v28.0"): {
+	ns0#Create_Position_Request @(ns0#version: "v35.0"): {
 		ns0#Business_Process_Parameters: {
 			ns0#Auto_Complete: true,
 			ns0#Run_Now: true
@@ -74,7 +74,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Create_Position_Request @(ns0#version: "v28.0"): {
+	ns0#Create_Position_Request @(ns0#version: "v35.0"): {
 		ns0#Business_Process_Parameters: {
 			ns0#Auto_Complete: true,
 			ns0#Run_Now: true
@@ -116,7 +116,7 @@ ns ns0 urn:com.workday/bsvc
 }]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<workday:staffing doc:name="Staffing || Create_Position" doc:id="d72b57b3-e742-4d65-bb7d-0bdd7c4d681c" config-ref="Workday_Config_version_34" operation="Create_Position"/>
+		<workday:staffing doc:name="Staffing || Create_Position" doc:id="d72b57b3-e742-4d65-bb7d-0bdd7c4d681c" config-ref="Workday_Config_version_35" operation="Create_Position"/>
 		<ee:transform doc:name="Transform Message" doc:id="b79cdf0a-0b40-4dc2-9ab8-161b2bda39b3" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -141,7 +141,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Put_Applicant_Request @(ns0#version: "v28.0"): {
+	ns0#Put_Applicant_Request @(ns0#version: "v35.0"): {
 		ns0#Applicant_Data: {
 			ns0#Personal_Data: {
 				ns0#Name_Data: {
@@ -234,7 +234,7 @@ ns ns0 urn:com.workday/bsvc
 }]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<workday:staffing doc:name="Staffing || Put_Applicant" doc:id="f3e6751b-e3e8-451e-bda9-bfe9f7b73a33" config-ref="Workday_Config_version_34" operation="Put_Applicant"/>
+		<workday:staffing doc:name="Staffing || Put_Applicant" doc:id="f3e6751b-e3e8-451e-bda9-bfe9f7b73a33" config-ref="Workday_Config_version_35" operation="Put_Applicant"/>
 		<ee:transform doc:name="Transform Message" doc:id="fe04403f-82fb-4cd3-8af2-3df5725f5127" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -258,7 +258,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Hire_Employee_Request @(ns0#version: "v28.0"): {
+	ns0#Hire_Employee_Request @(ns0#version: "v35.0"): {
 		ns0#Business_Process_Parameters: {
 			ns0#Auto_Complete: true
 		},
@@ -420,7 +420,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Hire_Employee_Request @(ns0#version: "v28.0"): {
+	ns0#Hire_Employee_Request @(ns0#version: "v35.0"): {
 		ns0#Business_Process_Parameters: {
 			ns0#Auto_Complete: true
 		},
@@ -577,7 +577,7 @@ ns ns0 urn:com.workday/bsvc
 }]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<workday:staffing doc:name="Staffing || Hire_Employee" doc:id="28dfa4bf-5ff1-4096-bc5f-b253f957c3f4" config-ref="Workday_Config_version_34" operation="Hire_Employee"/>
+		<workday:staffing doc:name="Staffing || Hire_Employee" doc:id="28dfa4bf-5ff1-4096-bc5f-b253f957c3f4" config-ref="Workday_Config_version_35" operation="Hire_Employee"/>
 		<ee:transform doc:name="Transform Message" doc:id="360a96c4-4ca2-4d77-965c-0154f1e2384b" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -601,7 +601,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Put_Payroll_Payee_NI_Request @(ns0#version: "v28.0"): {
+	ns0#Put_Payroll_Payee_NI_Request @(ns0#version: "v35.0"): {
 		ns0#Payroll_Payee_NI_Data: {
 			ns0#Worker_Reference: {
 				ns0#ID @(ns0#"type": "Employee_ID"): payload.employeeIDValue
@@ -626,7 +626,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Put_Payroll_Payee_NI_Request @(ns0#version: "v28.0"): {
+	ns0#Put_Payroll_Payee_NI_Request @(ns0#version: "v35.0"): {
 		ns0#Payroll_Payee_NI_Data: {
 			ns0#Worker_Reference: {
 				ns0#ID @(ns0#"type": "Employee_ID"): payload.employeeIDValue
@@ -646,7 +646,7 @@ ns ns0 urn:com.workday/bsvc
 }]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<workday:payroll-gbr doc:name="Payroll gbr || Put_Payroll_Payee_NI" doc:id="f256f940-2a54-4e60-8837-e56cc250f4ce" config-ref="Workday_Config_version_34" operation="Put_Payroll_Payee_NI"/>
+		<workday:payroll-gbr doc:name="Payroll gbr || Put_Payroll_Payee_NI" doc:id="f256f940-2a54-4e60-8837-e56cc250f4ce" config-ref="Workday_Config_version_35" operation="Put_Payroll_Payee_NI"/>
 		<ee:transform doc:name="Transform Message" doc:id="23390194-d6e8-4e60-ae33-3d4bb349d361" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
@@ -670,7 +670,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Get_Payroll_Payee_NIs_Request @(ns0#version: "v28.0"): {
+	ns0#Get_Payroll_Payee_NIs_Request @(ns0#version: "v35.0"): {
 		ns0#Request_References: {
 			ns0#Payroll_Payee_NI_Reference: {
 				ns0#ID @(ns0#"type": "WID"): payload.payrollPayeeNIReferenceID
@@ -685,7 +685,7 @@ output application/xml
 ns ns0 urn:com.workday/bsvc
 ---
 {
-	ns0#Get_Payroll_Payee_NIs_Request @(ns0#version: "v28.0"): {
+	ns0#Get_Payroll_Payee_NIs_Request @(ns0#version: "v35.0"): {
 		ns0#Request_References: {
 			ns0#Payroll_Payee_NI_Reference: {
 				ns0#ID @(ns0#"type": "WID"): payload.payrollPayeeNIReferenceID
@@ -695,7 +695,7 @@ ns ns0 urn:com.workday/bsvc
 }]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<workday:payroll-gbr doc:name="Payroll gbr || Get_Payroll_Payee_NIs" doc:id="a316aa58-63ad-40c9-acbb-706cfcf8f2b6" config-ref="Workday_Config_version_34" operation="Get_Payroll_Payee_NIs"/>
+		<workday:payroll-gbr doc:name="Payroll gbr || Get_Payroll_Payee_NIs" doc:id="a316aa58-63ad-40c9-acbb-706cfcf8f2b6" config-ref="Workday_Config_version_35" operation="Get_Payroll_Payee_NIs"/>
 		<ee:transform doc:name="Transform Message" doc:id="8f7f113c-4d3c-48fa-9a6f-f0c31de0ef44" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
